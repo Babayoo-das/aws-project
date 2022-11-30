@@ -52,7 +52,7 @@ def AddStud():
 
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
-           
+            s3.Bucket(custombucket).put_object(Key=Student_Id, Body=Student_Id)
             bucket_location = boto3.client('s3').get_bucket_location(Bucket=dbbucket)
             s3_location = (bucket_location['LocationConstraint'])
 
@@ -63,7 +63,8 @@ def AddStud():
 
             object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
                 s3_location,
-               	dbbucket)
+               	dbbucket,
+                Student_Id)
 
         except Exception as e:
             return str(e)
