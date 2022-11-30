@@ -52,7 +52,7 @@ def AddStud():
 
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
-            s3.Bucket(custombucket).put_object(Key=Student_Id, Body=Student_Id)
+            s3.Bucket(dbbucket).put_object(Key=Student_Id, Body=Student_Id)
             bucket_location = boto3.client('s3').get_bucket_location(Bucket=dbbucket)
             s3_location = (bucket_location['LocationConstraint'])
 
