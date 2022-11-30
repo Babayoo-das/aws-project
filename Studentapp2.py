@@ -38,26 +38,21 @@ def AddStud():
     Lname = request.form['Lname']
     Course_Name = request.form['Course_Name']
     YearofStudy = request.form['YearofStudy']
-    student_image = request.files['student_image']
 
     insert_sql = "INSERT INTO student VALUES (%s, %s, %s, %s, %s)"
     cursor = conn.cursor()
-
-    if student_image.filename == "":
-        return "Please select a file"
 
     try:
 
         cursor.execute(insert_sql, (Student_Id, Fname, Lname, Course_Name, YearofStudy))
         conn.commit()
         student_name = "" + Fname + " " + Lname
-        # Uploading image file in S3 #
-        image_file = "Student-Id-" + str(Student_Id) + "_image"
+        
         s3 = boto3.resource('s3')
 
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
-            s3.Bucket(dbbucket).put_object(Key=image_file, Body=student_image)
+           
             bucket_location = boto3.client('s3').get_bucket_location(Bucket=dbbucket)
             s3_location = (bucket_location['LocationConstraint'])
 
@@ -68,8 +63,7 @@ def AddStud():
 
             object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
                 s3_location,
-               	dbbucket,
-                image_file)
+               	dbbucket)
 
         except Exception as e:
             return str(e)
