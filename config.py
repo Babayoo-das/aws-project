@@ -1,0 +1,6 @@
+host = "students.cm8oeomhbnsh.us-east-2.rds.amazonaws.com"
+user = "awsswetha"
+password = "Sillymango5"
+database = "students"
+bucket = "addstudents"
+region = "us-east-2"
