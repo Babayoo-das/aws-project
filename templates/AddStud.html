@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Student Details</title>
+</head>
+<center>
+	<font color="black" size="4" style="font-family: avenir">
+
+		<h1 style="color: DarkBlue">Student Database Details</h1>
+
+		<body bgcolor="lightgrey">
+
+			<form action="/addstud" autocomplete="on" method = "POST" enctype="multipart/form-data">
+
+				<button type="submit" formaction="/getstud" style="background: darkgrey; height: 45px; width: 300px; color:brown; font:oblique;">GET STUDENT INFORMATION</button><br><br>
+
+		  		Student ID:<br> <input style="height:25px;font-size:14pt; color:grey;" type="number" name="Student_Id" autofocus size="40"><br><br>
+
+		  		First Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="Fname" ><br><br>
+
+		  		Last Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="Lname"><br><br>
+
+		  		Course Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="Course_Name"><br><br>
+
+		  		Year of Study:<br> <input style="height:25px;font-size:14pt;color:grey;" type="number" name="YearofStudy"><br><br>
+
+		  		Image: <input type=file name="stud_image_file" style="height:25px;font-size:14pt;color:grey;"> <br><br>
+
+		  		<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">UPDATE DATABASE</button>
+
+			</form>
+<a href="/about">About Us</a>
+		</body>
+
+	</font>
+</center>
+</html>
