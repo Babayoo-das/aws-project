@@ -26,9 +26,9 @@ def home():
     return render_template('AddStud.html')
 
 
-@app.route("/about", methods=['POST'])
+@app.route("/about", methods=['GET'])
 def about():
-    return render_template('www.google.com')
+    return render_template('GetStud.html')
 
 
 @app.route("/addstud", methods=['POST'])
