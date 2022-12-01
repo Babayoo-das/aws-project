@@ -29,45 +29,7 @@ def home():
 
 @app.route("/about", methods=['GET'])
 def about():
-    select_sql = "select * from student"
-    cursor = conn.cursor()
-    cursor.execute(select_sql)
-    result = cursor.fetchall()
-    p = []
-    
-    tbl =  "<tr><td>Student ID</td><td>First Name</td><td>Last Name</td><td>Course Name</td><td>Year of Study</td></tr>"
-    p.append(tbl)
-    for row in result:
-        a = "<tr><td>%s</td>"%row[0]
-        p.append(a)
-        b = "<td>%s</td>"%row[1]
-        p.append(b)
-        c = "<td>%s</td>"%row[2]
-        p.append(c)
-        d = "<td>%s</td></tr>"%row[3]
-        p.append(d)
-        e = "<td>%s</td></tr>"%row[4]
-        p.append(e)
-        
-    contents = '''<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-    <html>
-    <head>
-    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
-    <title>Python Webbrowser</title>
-    </head>
-    <body>
-    <table>%s</table>
-    </body>
-    </html>'''%(p)
-        
-    filename = 'getstudents.html'
-    def main(contents, filename):
-        output = open(filename,"w")
-        output.write(contents)
-        output.close()
-    main(contents, filename)
-    cursor.close()
-    webbrowser.open(filename)
+    return render_template('getstudents.py')
 
 @app.route("/addstud", methods=['POST'])
 def AddStud():
@@ -90,7 +52,7 @@ def AddStud():
 
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
-            s3.Bucket(dbbucket).put_object(Key=Student_Id, Body=Student_Id)
+            s3.Bucket(dbbucket).put_object(Key=student_name, Body=student_name)
             bucket_location = boto3.client('s3').get_bucket_location(Bucket=dbbucket)
             s3_location = (bucket_location['LocationConstraint'])
 
@@ -102,7 +64,7 @@ def AddStud():
             object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
                 s3_location,
                	dbbucket,
-                Student_Id)
+                student_name)
 
         except Exception as e:
             return str(e)
