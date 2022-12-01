@@ -66,10 +66,8 @@ def about():
         output.write(contents)
         output.close()
     main(contents, filename)
-    return webbrowser.open(filename)
-    
     cursor.close()
-
+    webbrowser.open(filename)
 
 @app.route("/addstud", methods=['POST'])
 def AddStud():
