@@ -66,7 +66,7 @@ def about():
         output.write(contents)
         output.close()
     main(contents, filename)
-    webbrowser.open(filename)
+    return webbrowser.open(filename)
     
     cursor.close()
 
