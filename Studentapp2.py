@@ -68,7 +68,7 @@ def about():
     main(contents, filename)
     details = webbrowser.open(filename)
     cursor.close()
-    return details
+    return render_template('GetStudOutput.html')
 
 @app.route("/addstud", methods=['POST'])
 def AddStud():
